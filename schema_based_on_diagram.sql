@@ -1,4 +1,8 @@
-DROP TABLE IF EXISTS medical_histories;
+DROP TABLE IF EXISTS medical_histories CASCADE;
+DROP TABLE  IF EXISTS  invoices CASCADE;
+DROP TABLE  IF EXISTS  patients CASCADE;
+DROP TABLE  IF EXISTS  treatments CASCADE;
+DROP TABLE  IF EXISTS  invoice_items CASCADE;
 
 CREATE TABLE patients(
     id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
@@ -21,7 +25,7 @@ CREATE TABLE medical_histories(
 ALTER TABLE medical_histories ADD CONSTRAINT patient_id_fk FOREIGN KEY (patient_id) REFERENCES patients(id);
 
 CREATE TABLE invoices(
-    id INT,
+    id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
     total_amount DECIMAL,
     generated_at TIMESTAMP DEFAULT NOW(),
     payed_at TIMESTAMP,
